@@ -1,0 +1,18 @@
+# Node / React
+node_modules/
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Docker
+*.log
+.env
+
+# Audio – si tu ne veux pas suivre le WAV :
+clean.wav
+
+# OS
+.DS_Store

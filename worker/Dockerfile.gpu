@@ -1,0 +1,15 @@
+# → version GPU (AWS / EC2 / prod) ( peut etre ameliorer )
+FROM pytorch/pytorch:2.2.2-cuda12.1-cudnn8-runtime
+
+RUN apt-get update && \
+    apt-get install -y ffmpeg git build-essential wget autoconf automake libtool pkg-config && \
+    pip install --no-cache-dir demucs==4.0.1 soundfile tqdm && \
+    git clone https://github.com/xiph/rnnoise.git /tmp/rn && \
+    cd /tmp/rn && ./autogen.sh && ./configure && make && cp examples/rnnoise_demo /usr/local/bin/ && \
+    rm -rf /tmp/rn
+
+WORKDIR /app
+COPY audio_prep.py worker_swap.py requirements.txt* ./
+RUN pip install -r requirements.txt || true
+
+ENTRYPOINT ["python", "worker_swap.py"]

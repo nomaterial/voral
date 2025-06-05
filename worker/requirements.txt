@@ -1,0 +1,15 @@
+# ➜ ORDRE IMPORTANT : installer NumPy D’ABORD pour éviter conflits de dépendances C
+
+numpy==1.26.4          # obligatoire pour compat PyTorch 2.2.2 et Demucs 4.0.1
+torch==2.2.2           # PyTorch charge ses extensions C++ au runtime → nécessite NumPy cohérent
+demucs==4.0.1          # dépend de torch et de numpy
+soundfile              # OK, pur Python + libsndfile C
+tqdm                   # OK, pure Python
+
+# autres libs :
+boto3                  # AWS client
+python-dotenv          # gestion variables .env
+
+# à ajouter plus tard pour RVC :
+# faiss-gpu==1.8.x     # attendre migration NumPy 2, version 1.8.0 est OK sous NumPy 1.26
+# librosa==0.10.x      # pure Python mais certaines dépendances natives doivent matcher numpy
