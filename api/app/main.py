@@ -128,15 +128,15 @@ async def create_tts_stock_job(text: str = Form(...), voiceId: str = Form(...), 
 
 
 @app.get("/jobs/{job_id}") # GET /jobs/{job_id} → permet au Front de voir le statut et l’URL quand done
-async def job_status(job_id: str):
+async def read_job(job_id: str):
     resp = table.get_item(Key={"jobId": job_id})
     if "Item" not in resp:
         raise HTTPException(status_code=404, detail="Job not found")
     item = resp["Item"]
 
-    # Génère une URL signée si le job est terminé
+    # Génère une URL signée si le résultat est disponible
     presigned = None
-    if item["status"] == "done" and item.get("resultUrl"):
+    if item.get("resultUrl"):
         presigned = s3.generate_presigned_url(
             ClientMethod="get_object",
             Params={"Bucket": BUCKET, "Key": item["resultUrl"]},
