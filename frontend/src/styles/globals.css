@@ -1,0 +1,70 @@
+/* src/styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 1. Base resets & global rules */
+@layer base {
+  /* Box sizing */
+  *, *::before, *::after {
+    @apply box-border;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Body defaults */
+  body {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased;
+    @apply font-sans;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Links */
+  a {
+    @apply text-blue-600 hover:underline dark:text-blue-400;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-gray-900 dark:text-gray-100;
+    margin-top: 0;
+  }
+
+  /* Paragraphs */
+  p {
+    @apply mb-4;
+  }
+
+  /* Focus outlines on interactive elements */
+  button, input, select, textarea {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400;
+  }
+}
+
+/* 2. Container component for consistent padding/width */
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* 3. Spinner utility (light / dark) */
+@layer utilities {
+  .spinner {
+    @apply animate-spin rounded-full
+           border-4 border-t-4
+           border-gray-200 border-t-blue-600
+           dark:border-gray-700 dark:border-t-blue-400;
+  }
+}
+
+/* 4. Fallback mobile padding */
+@media (max-width: 640px) {
+  body {
+    padding: 1rem;
+  }
+}

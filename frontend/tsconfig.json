@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "jsx": "preserve",
+    "strict": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "components/*": [
+        "src/components/*"
+      ],
+      "api/*": [
+        "src/api/*"
+      ],
+      "utils/*": [
+        "src/utils/*"
+      ],
+      "hooks/*": [
+        "src/hooks/*"
+      ],
+      "forms":   [
+        "src/components/Forms"
+      ],
+      "forms/*": [
+        "src/components/Forms/*"
+      ]
+    },
+    "types": [
+      "node"
+    ],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "src",
+    "stylelint.config.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
